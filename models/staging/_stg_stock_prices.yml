@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_stock_prices
+    description: "Daily stock price fact table, one row per ticker per trading day, with day-over-day percent change and 7-day rolling average close price."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - ticker
+              - report_date
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "volume > 0"
+    columns:
+      - name: ticker
+        description: "Stock ticker symbol."
+        data_tests:
+          - not_null
+      - name: report_date
+        description: "Trading date for this price observation."
+        data_tests:
+          - not_null
+      - name: open
+        description: "Opening price for the trading day."
+        data_tests:
+          - not_null
+      - name: volume
+        description: "Number of shares traded."
+        data_tests:
+          - not_null
+      - name: percent_change
+        description: "Day-over-day percent change in closing price versus the previous trading day. Null on each ticker's first available date, since there is no prior day to compare against."
+      - name: prev_seven_day_avg
+        description: "7-day rolling average of the closing price, including the current day. Uses a partial window (fewer than 7 days) for each ticker's first 6 rows."

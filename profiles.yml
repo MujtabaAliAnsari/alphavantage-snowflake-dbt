@@ -1,0 +1,13 @@
+alphavantage_snowflake_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: BEQBXPH-GV55111
+      user: MUJTAABAALIANSARI
+      password: "{{ env_var('sn_password') }}"
+      role: "{{ env_var('sn_role') }}"
+      database: STOCK_PRICES
+      warehouse: TRANSFORMING
+      schema: SILVER
+      threads: 4

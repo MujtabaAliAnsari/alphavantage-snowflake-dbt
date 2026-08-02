@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: raw_stock_prices
+    description: "Raw data from our source system"
+    database: STOCK_PRICES
+    schema: BRONZE
+    
+    # freshness:
+    #   warn_after: {count: 12, period: hour}
+    #   error_after: {count: 24, period: hour}
+      
+
+    tables:
+      - name: RAW_STOCK_PRICES
+        description: "Raw table description"
+        
