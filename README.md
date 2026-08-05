@@ -3,7 +3,7 @@ A full end-to-end ELT pipeline that extracts daily stock data from the Alpha Van
 
 ## Architecture
 
-![alt text](<Screenshot 2026-08-03 020554-1.png>)
+![alt text](<Data Lineage.png>)
 
 A brief description of the medallion layers:
 - **Bronze** (`STOCK_PRICES.BRONZE.RAW_STOCK_PRICES`): This is where the json data from the cached files are loaded in their raw form. Dates and numbers are all loaded as strings rather than their own data types
